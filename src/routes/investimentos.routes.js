@@ -5,6 +5,6 @@ const investimentosRoutes = Router();
 
 investimentosRoutes.post('/investimentos/comprar', investimentosController.comprar);
 
-// investimentosRoutes.post('/vender', investimentosController.vender);
+investimentosRoutes.post('/investimentos/vender', investimentosController.vender);
 
 module.exports = investimentosRoutes;
