@@ -8,6 +8,9 @@ async function getByCodAtivo(codAtivo) {
 
 async function getAssetsByClientId(id) {
   const result = await userModel.getUserById(id, false, true);
+  if (!result) {
+    return null;
+  }
   return result.UserAssets.map((a) => {
     const { id_user, id_asset, amount, Asset } = a;
     return {
