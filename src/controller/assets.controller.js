@@ -6,11 +6,23 @@ async function getByCodAtivo(req, res) {
     const result = await assetsService.getByCodAtivo(Number(codAtivo));
     return res.status(200).json({ result });
   } catch (err) {
-    console.log(err.message)
+    console.log(err)
+    return res.status(500).json({error: true, message: 'Unexepcetd Error'}) 
+  }
+}
+
+async function getAssetsByClientId(req, res) {
+  try {
+    const { codCliente } = req.params;
+    const result = await assetsService.getAssetsByClientId(Number(codCliente));
+    return res.status(200).json({ result });
+  } catch (err) {
+    console.log(err)
     return res.status(500).json({error: true, message: 'Unexepcetd Error'}) 
   }
 }
 
 module.exports = {
   getByCodAtivo,
+  getAssetsByClientId,
 };

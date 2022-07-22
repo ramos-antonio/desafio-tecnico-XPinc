@@ -18,7 +18,6 @@ async function updateAmount(codAtivo, newAssetAmount) {
 }
 
 async function saveOperation(codAtivo, qtdAtivo, currency, codCliente, typeOperation ) {
-  // connection.
   const operationSaved = await connection.assetOperation.create({
     data: {
       id_user: codCliente,

@@ -3,7 +3,6 @@ require('dotenv').config();
 const APP_SECRET = process.env.SECRET_KEY;
 
 function enconded(user) {
-  console.log(user);
   const token = jwt.sign({ ...user }, APP_SECRET);
   return token;
 };
