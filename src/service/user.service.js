@@ -13,9 +13,17 @@ async function getUserWalletById(codCliente) {
 }
 
 async function depositRequest(codCliente, value) {
-  const user = await userModel.depositRequest(codCliente, value);
+  const operationSaved = await userModel.depositRequest(codCliente, value);
   return {
-    CodCliente: user.id,
+    CodCliente: operationSaved.id_user,
+    Valor: value,
+  };
+}
+
+async function withdrawnRequest(codCliente, value) {
+  const operationSaved = await userModel.withdrawnRequest(codCliente, value);
+  return {
+    CodCliente: operationSaved.id_user,
     Valor: value,
   };
 }
@@ -24,4 +32,5 @@ module.exports = {
   getAll,
   getUserWalletById,
   depositRequest,
+  withdrawnRequest,
 };

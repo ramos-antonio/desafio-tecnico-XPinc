@@ -35,8 +35,23 @@ async function depositRequest(req, res) {
   }
 }
 
+async function withdrawnRequest(req, res) {
+  try {
+    const { codCliente: id, Valor: value } = req.body;
+    const newWithdrawn = await userService.withdrawnRequest(
+      Number(id),
+      Number(value)
+    );
+    res.status(200).json(newWithdrawn);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ result: "Unexpected error" });
+  }
+}
+
 module.exports = {
   getAll,
   getUserWalletById,
   depositRequest,
+  withdrawnRequest,
 };

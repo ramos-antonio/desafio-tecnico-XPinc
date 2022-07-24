@@ -57,6 +57,18 @@ async function depositRequest(codCliente, Valor) {
   });
 }
 
+async function withdrawnRequest(codCliente, Valor) {
+  const walletId = await getUserById(codCliente, true, false);
+  return await connection.walletOperation.create({
+    data: {
+      id_user: codCliente,
+      value: Valor,
+      type: "withdrawn",
+      id_wallet: walletId.Wallet.id,
+    },
+  });
+}
+
 module.exports = {
   getAll,
   getUserById,
@@ -64,4 +76,5 @@ module.exports = {
   createUserAsset,
   updateUserAsset,
   depositRequest,
+  withdrawnRequest,
 };
