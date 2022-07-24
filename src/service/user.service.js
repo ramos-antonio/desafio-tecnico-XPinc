@@ -12,7 +12,16 @@ async function getUserWalletById(codCliente) {
   };
 }
 
+async function depositRequest(codCliente, value) {
+  const user = await userModel.depositRequest(codCliente, value);
+  return {
+    CodCliente: user.id,
+    Valor: value,
+  };
+}
+
 module.exports = {
   getAll,
   getUserWalletById,
+  depositRequest,
 };

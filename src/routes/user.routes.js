@@ -5,5 +5,6 @@ const userRoutes = Router();
 
 userRoutes.get("/user", userController.getAll);
 userRoutes.get("/conta/:id", userController.getUserWalletById);
+userRoutes.post("/conta/deposito", userController.depositRequest);
 
 module.exports = userRoutes;

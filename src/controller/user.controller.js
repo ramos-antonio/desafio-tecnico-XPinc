@@ -21,7 +21,22 @@ async function getUserWalletById(req, res) {
   }
 }
 
+async function depositRequest(req, res) {
+  try {
+    const { codCliente: id, Valor: value } = req.body;
+    const newDeposit = await userService.depositRequest(
+      Number(id),
+      Number(value)
+    );
+    res.status(200).json(newDeposit);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ result: "Unexpected error" });
+  }
+}
+
 module.exports = {
   getAll,
   getUserWalletById,
+  depositRequest,
 };
