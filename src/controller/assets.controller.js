@@ -1,4 +1,4 @@
-const assetsService = require('../service/assets.service');
+const assetsService = require("../service/assets.service");
 
 async function getByCodAtivo(req, res) {
   try {
@@ -6,8 +6,8 @@ async function getByCodAtivo(req, res) {
     const result = await assetsService.getByCodAtivo(Number(codAtivo));
     return res.status(200).json({ result });
   } catch (err) {
-    console.log(err)
-    return res.status(500).json({error: true, message: 'Unexepcetd Error'}) 
+    console.log(err);
+    return res.status(500).json({ error: true, message: "Unexepcetd Error" });
   }
 }
 
@@ -17,12 +17,23 @@ async function getAssetsByClientId(req, res) {
     const result = await assetsService.getAssetsByClientId(Number(codCliente));
     return res.status(200).json({ result });
   } catch (err) {
-    console.log(err)
-    return res.status(500).json({error: true, message: 'Unexepcetd Error'}) 
+    console.log(err);
+    return res.status(500).json({ error: true, message: "Unexepcetd Error" });
+  }
+}
+
+async function getAllAssets(_req, res) {
+  try {
+    const result = await assetsService.getAllAssets();
+    return res.status(200).json([...result]);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: true, message: "Unexepcetd Error" });
   }
 }
 
 module.exports = {
   getByCodAtivo,
   getAssetsByClientId,
+  getAllAssets,
 };

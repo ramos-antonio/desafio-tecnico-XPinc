@@ -22,7 +22,12 @@ async function getAssetsByClientId(id) {
   });
 }
 
+async function getAllAssets() {
+  return await assetsModel.getAllAssets();
+}
+
 module.exports = {
   getByCodAtivo,
   getAssetsByClientId,
+  getAllAssets,
 };
