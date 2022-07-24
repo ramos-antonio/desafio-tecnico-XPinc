@@ -13,11 +13,15 @@ async function getUserWalletById(codCliente) {
 }
 
 async function depositRequest(codCliente, value) {
-  const operationSaved = await userModel.depositRequest(codCliente, value);
-  return {
-    CodCliente: operationSaved.id_user,
-    Valor: value,
-  };
+  const amount = await getUserWalletById(codCliente);
+  if (value > 0) {
+    const operationSaved = await userModel.depositRequest(codCliente, value);
+    await userModel.updateWallet(codCliente, amount.Saldo + value);
+    return {
+      CodCliente: operationSaved.id_user,
+      Valor: value,
+    };
+  }
 }
 
 async function withdrawnRequest(codCliente, value) {
