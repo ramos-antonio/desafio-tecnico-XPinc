@@ -21,11 +21,15 @@ async function depositRequest(codCliente, value) {
 }
 
 async function withdrawnRequest(codCliente, value) {
-  const operationSaved = await userModel.withdrawnRequest(codCliente, value);
-  return {
-    CodCliente: operationSaved.id_user,
-    Valor: value,
-  };
+  const amount = await getUserWalletById(codCliente);
+  if (amount.Saldo > value && value > 0) {
+    const operationSaved = await userModel.withdrawnRequest(codCliente, value);
+    await userModel.updateWallet(codCliente, amount.Saldo - value);
+    return {
+      CodCliente: operationSaved.id_user,
+      Valor: value,
+    };
+  }
 }
 
 module.exports = {
